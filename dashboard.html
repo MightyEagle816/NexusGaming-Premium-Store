@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexusStore – Admin Dashboard</title>
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ====== SIDEBAR ====== -->
+  <aside class="dash-sidebar" id="dash-sidebar">
+    <div class="dash-sidebar-header">
+      <a href="index.html" class="dash-logo">
+        <span class="dash-logo-icon">◆</span>
+        <span class="dash-logo-text">NEXUS<span class="dash-logo-accent">PANEL</span></span>
+      </a>
+      <button class="dash-sidebar-close" id="dash-sidebar-close" aria-label="Close sidebar">✕</button>
+    </div>
+
+    <nav class="dash-sidebar-nav">
+      <div class="dash-nav-section-label">Main</div>
+      <a href="#" class="dash-nav-item active" data-section="overview">
+        <span class="dash-nav-icon">📊</span>
+        <span class="dash-nav-label">Overview</span>
+      </a>
+      <a href="#" class="dash-nav-item" data-section="analytics">
+        <span class="dash-nav-icon">📈</span>
+        <span class="dash-nav-label">Analytics</span>
+      </a>
+      <a href="#" class="dash-nav-item" data-section="products">
+        <span class="dash-nav-icon">🛒</span>
+        <span class="dash-nav-label">Products</span>
+        <span class="dash-nav-badge">12</span>
+      </a>
+
+      <div class="dash-nav-section-label">Management</div>
+      <a href="#" class="dash-nav-item" data-section="orders">
+        <span class="dash-nav-icon">📦</span>
+        <span class="dash-nav-label">Orders</span>
+        <span class="dash-nav-badge dash-nav-badge-orange">8</span>
+      </a>
+      <a href="#" class="dash-nav-item" data-section="customers">
+        <span class="dash-nav-icon">👥</span>
+        <span class="dash-nav-label">Customers</span>
+      </a>
+      <a href="#" class="dash-nav-item" data-section="reviews">
+        <span class="dash-nav-icon">⭐</span>
+        <span class="dash-nav-label">Reviews</span>
+      </a>
+
+      <div class="dash-nav-section-label">Settings</div>
+      <a href="#" class="dash-nav-item" data-section="settings">
+        <span class="dash-nav-icon">⚙️</span>
+        <span class="dash-nav-label">Settings</span>
+      </a>
+    </nav>
+
+    <div class="dash-sidebar-footer">
+      <div class="dash-sidebar-user">
+        <div class="dash-user-avatar">A</div>
+        <div class="dash-user-info">
+          <span class="dash-user-name">Admin</span>
+          <span class="dash-user-role">Super Admin</span>
+        </div>
+      </div>
+      <a href="index.html" class="dash-sidebar-logout" title="Back to Store">←</a>
+    </div>
+  </aside>
+
+  <!-- ====== SIDEBAR OVERLAY ====== -->
+  <div class="dash-overlay" id="dash-overlay"></div>
+
+  <!-- ====== MAIN WRAPPER ====== -->
+  <div class="dash-main" id="dash-main">
+
+    <!-- ====== TOP BAR ====== -->
+    <header class="dash-topbar">
+      <div class="dash-topbar-left">
+        <button class="dash-hamburger" id="dash-hamburger" aria-label="Toggle sidebar">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="dash-search-wrap">
+          <span class="dash-search-icon">🔍</span>
+          <input type="text" class="dash-search" placeholder="Search products, orders, customers..." />
+          <span class="dash-search-shortcut">⌘K</span>
+        </div>
+      </div>
+      <div class="dash-topbar-right">
+        <button class="dash-topbar-btn" aria-label="Notifications">
+          <span class="dash-topbar-btn-icon">🔔</span>
+          <span class="dash-topbar-badge" id="dash-notif-badge">3</span>
+        </button>
+        <button class="dash-topbar-btn" aria-label="Messages">
+          <span class="dash-topbar-btn-icon">💬</span>
+          <span class="dash-topbar-badge dash-topbar-badge-purple">5</span>
+        </button>
+        <div class="dash-topbar-divider"></div>
+        <a href="index.html" class="dash-topbar-store">← Store</a>
+        <div class="dash-topbar-avatar">A</div>
+      </div>
+    </header>
+
+    <!-- ====== DASHBOARD CONTENT ====== -->
+    <div class="dash-content">
+
+      <!-- ====== SECTION: OVERVIEW ====== -->
+      <section class="dash-section active" id="section-overview">
+        <div class="dash-section-header">
+          <div>
+            <h1 class="dash-page-title">Dashboard Overview</h1>
+            <p class="dash-page-subtitle">Your store at a glance — real-time analytics and metrics</p>
+          </div>
+          <div class="dash-header-actions">
+            <span class="dash-live-dot"></span>
+            <span class="dash-live-text">Live</span>
+            <select class="dash-date-select">
+              <option>Last 7 days</option>
+              <option selected>Last 30 days</option>
+              <option>Last 90 days</option>
+              <option>This Year</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Analytics Cards -->
+        <div class="dash-cards">
+          <div class="dash-card dash-card-gradient" data-aos="fade-up" data-aos-delay="0">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-icon-box" style="--icon-bg: rgba(0,212,255,0.12);">
+              <span>💰</span>
+            </div>
+            <div class="dash-card-info">
+              <span class="dash-card-label">Total Revenue</span>
+              <span class="dash-card-value" id="stat-revenue" data-target="128450">$0</span>
+              <span class="dash-card-change up">▲ 12.5% vs last period</span>
+            </div>
+          </div>
+
+          <div class="dash-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-icon-box" style="--icon-bg: rgba(139,92,246,0.12);">
+              <span>📦</span>
+            </div>
+            <div class="dash-card-info">
+              <span class="dash-card-label">Total Orders</span>
+              <span class="dash-card-value" id="stat-orders" data-target="3842">0</span>
+              <span class="dash-card-change up">▲ 8.3% vs last period</span>
+            </div>
+          </div>
+
+          <div class="dash-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-icon-box" style="--icon-bg: rgba(0,255,136,0.12);">
+              <span>👥</span>
+            </div>
+            <div class="dash-card-info">
+              <span class="dash-card-label">Active Customers</span>
+              <span class="dash-card-value" id="stat-customers" data-target="12783">0</span>
+              <span class="dash-card-change up">▲ 5.2% vs last period</span>
+            </div>
+          </div>
+
+          <div class="dash-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-icon-box" style="--icon-bg: rgba(255,60,172,0.12);">
+              <span>📈</span>
+            </div>
+            <div class="dash-card-info">
+              <span class="dash-card-label">Conversion Rate</span>
+              <span class="dash-card-value" id="stat-conversion" data-target="3.42">0%</span>
+              <span class="dash-card-change up">▲ 1.2% vs last period</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="dash-charts-row">
+          <div class="dash-chart-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="dash-chart-header">
+              <h3>Revenue Overview</h3>
+              <span class="dash-chart-period">Jan – Jun 2025</span>
+            </div>
+            <div class="dash-chart-body">
+              <canvas id="chart-revenue" width="600" height="250"></canvas>
+            </div>
+          </div>
+
+          <div class="dash-chart-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="dash-chart-header">
+              <h3>Orders by Product</h3>
+              <span class="dash-chart-period">Top performers</span>
+            </div>
+            <div class="dash-chart-body">
+              <canvas id="chart-products" width="600" height="250"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Orders Table -->
+        <div class="dash-table-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="dash-table-header">
+            <h3>Recent Orders</h3>
+            <a href="#" class="dash-table-view-all" data-section="orders">View All →</a>
+          </div>
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Product</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="dash-order-id">#NEX-28473</span></td>
+                  <td><span class="dash-customer-name">Zer0Craft</span></td>
+                  <td>Minecraft Premium</td>
+                  <td><span class="dash-amount">$29.99</span></td>
+                  <td><span class="dash-status delivered">Delivered</span></td>
+                  <td>2 hours ago</td>
+                  <td><button class="dash-action-btn" aria-label="View order">👁</button></td>
+                </tr>
+                <tr>
+                  <td><span class="dash-order-id">#NEX-28472</span></td>
+                  <td><span class="dash-customer-name">Kyro_22</span></td>
+                  <td>Discord Nitro ×2</td>
+                  <td><span class="dash-amount">$19.98</span></td>
+                  <td><span class="dash-status processing">Processing</span></td>
+                  <td>4 hours ago</td>
+                  <td><button class="dash-action-btn" aria-label="View order">👁</button></td>
+                </tr>
+                <tr>
+                  <td><span class="dash-order-id">#NEX-28471</span></td>
+                  <td><span class="dash-customer-name">NeonViper</span></td>
+                  <td>Game Pass Ultimate</td>
+                  <td><span class="dash-amount">$14.99</span></td>
+                  <td><span class="dash-status delivered">Delivered</span></td>
+                  <td>6 hours ago</td>
+                  <td><button class="dash-action-btn" aria-label="View order">👁</button></td>
+                </tr>
+                <tr>
+                  <td><span class="dash-order-id">#NEX-28470</span></td>
+                  <td><span class="dash-customer-name">MysticPulse</span></td>
+                  <td>Netflix Premium</td>
+                  <td><span class="dash-amount">$11.99</span></td>
+                  <td><span class="dash-status pending">Pending</span></td>
+                  <td>8 hours ago</td>
+                  <td><button class="dash-action-btn" aria-label="View order">👁</button></td>
+                </tr>
+                <tr>
+                  <td><span class="dash-order-id">#NEX-28469</span></td>
+                  <td><span class="dash-customer-name">ShadowBlade</span></td>
+                  <td>Spotify Premium</td>
+                  <td><span class="dash-amount">$5.99</span></td>
+                  <td><span class="dash-status cancelled">Cancelled</span></td>
+                  <td>12 hours ago</td>
+                  <td><button class="dash-action-btn" aria-label="View order">👁</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION: ANALYTICS ====== -->
+      <section class="dash-section" id="section-analytics">
+        <div class="dash-section-header">
+          <div>
+            <h1 class="dash-page-title">Analytics</h1>
+            <p class="dash-page-subtitle">Deep-dive metrics and performance data</p>
+          </div>
+        </div>
+
+        <div class="dash-cards">
+          <div class="dash-card" data-aos="fade-up">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-icon-box" style="--icon-bg: rgba(0,212,255,0.12);"><span>👁</span></div>
+            <div class="dash-card-info">
+              <span class="dash-card-label">Page Views</span>
+              <span class="dash-card-value">142,893</span>
+              <span class="dash-card-change up">▲ 18.7%</span>
+            </div>
+          </div>
+          <div class="dash-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-icon-box" style="--icon-bg: rgba(139,92,246,0.12);"><span>🔄</span></div>
+            <div class="dash-card-info">
+              <span class="dash-card-label">Avg. Session</span>
+              <span class="dash-card-value">4m 32s</span>
+              <span class="dash-card-change up">▲ 6.1%</span>
+            </div>
+          </div>
+          <div class="dash-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-icon-box" style="--icon-bg: rgba(0,255,136,0.12);"><span>⭐</span></div>
+            <div class="dash-card-info">
+              <span class="dash-card-label">Avg. Rating</span>
+              <span class="dash-card-value">4.8 ★</span>
+              <span class="dash-card-change up">▲ 0.3</span>
+            </div>
+          </div>
+          <div class="dash-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-icon-box" style="--icon-bg: rgba(255,60,172,0.12);"><span>📤</span></div>
+            <div class="dash-card-info">
+              <span class="dash-card-label">Bounce Rate</span>
+              <span class="dash-card-value">24.1%</span>
+              <span class="dash-card-change down">▼ 3.2%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Full-width chart -->
+        <div class="dash-chart-card dash-chart-full" data-aos="fade-up">
+          <div class="dash-chart-header">
+            <h3>Revenue Trend (12 Months)</h3>
+            <span class="dash-chart-period">Jul 2024 – Jun 2025</span>
+          </div>
+          <div class="dash-chart-body">
+            <canvas id="chart-revenue-full" width="1100" height="280"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION: PRODUCTS ====== -->
+      <section class="dash-section" id="section-products">
+        <div class="dash-section-header">
+          <div>
+            <h1 class="dash-page-title">Products</h1>
+            <p class="dash-page-subtitle">Manage your digital product catalog</p>
+          </div>
+          <button class="dash-add-btn btn-glow btn-sm btn-ripple">+ Add Product</button>
+        </div>
+
+        <div class="dash-table-card">
+          <div class="dash-table-header">
+            <div class="dash-table-filter-row">
+              <div class="dash-search-wrap dash-table-search">
+                <span class="dash-search-icon">🔍</span>
+                <input type="text" class="dash-search dash-search-sm" placeholder="Search products..." />
+              </div>
+              <select class="dash-filter-select">
+                <option>All Categories</option>
+                <option>Gaming Accounts</option>
+                <option>Subscriptions</option>
+                <option>Gift Cards</option>
+              </select>
+            </div>
+          </div>
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Sales</th>
+                  <th>Revenue</th>
+                  <th>Stock</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="dash-product-cell">
+                      <span class="dash-product-emoji" style="background:rgba(26,107,50,0.15);">⛏</span>
+                      <span class="dash-product-name">Minecraft Premium</span>
+                    </div>
+                  </td>
+                  <td>Gaming Account</td>
+                  <td><span class="dash-amount">$29.99</span></td>
+                  <td>1,847</td>
+                  <td><span class="dash-amount">$55,392</span></td>
+                  <td><span class="dash-stock high">238</span></td>
+                  <td><span class="dash-status delivered">Active</span></td>
+                  <td>
+                    <div class="dash-table-actions">
+                      <button class="dash-action-btn" aria-label="Edit">✏️</button>
+                      <button class="dash-action-btn" aria-label="Delete">🗑</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="dash-product-cell">
+                      <span class="dash-product-emoji" style="background:rgba(88,101,242,0.15);">💬</span>
+                      <span class="dash-product-name">Discord Nitro</span>
+                    </div>
+                  </td>
+                  <td>Subscription</td>
+                  <td><span class="dash-amount">$9.99</span></td>
+                  <td>3,421</td>
+                  <td><span class="dash-amount">$34,176</span></td>
+                  <td><span class="dash-stock high">∞</span></td>
+                  <td><span class="dash-status delivered">Active</span></td>
+                  <td>
+                    <div class="dash-table-actions">
+                      <button class="dash-action-btn" aria-label="Edit">✏️</button>
+                      <button class="dash-action-btn" aria-label="Delete">🗑</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="dash-product-cell">
+                      <span class="dash-product-emoji" style="background:rgba(29,185,84,0.15);">🎵</span>
+                      <span class="dash-product-name">Spotify Premium</span>
+                    </div>
+                  </td>
+                  <td>Subscription</td>
+                  <td><span class="dash-amount">$5.99</span></td>
+                  <td>2,893</td>
+                  <td><span class="dash-amount">$17,329</span></td>
+                  <td><span class="dash-stock high">∞</span></td>
+                  <td><span class="dash-status delivered">Active</span></td>
+                  <td>
+                    <div class="dash-table-actions">
+                      <button class="dash-action-btn" aria-label="Edit">✏️</button>
+                      <button class="dash-action-btn" aria-label="Delete">🗑</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="dash-product-cell">
+                      <span class="dash-product-emoji" style="background:rgba(229,9,20,0.15);">🎬</span>
+                      <span class="dash-product-name">Netflix Premium</span>
+                    </div>
+                  </td>
+                  <td>Subscription</td>
+                  <td><span class="dash-amount">$11.99</span></td>
+                  <td>1,562</td>
+                  <td><span class="dash-amount">$18,728</span></td>
+                  <td><span class="dash-stock med">45</span></td>
+                  <td><span class="dash-status delivered">Active</span></td>
+                  <td>
+                    <div class="dash-table-actions">
+                      <button class="dash-action-btn" aria-label="Edit">✏️</button>
+                      <button class="dash-action-btn" aria-label="Delete">🗑</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="dash-product-cell">
+                      <span class="dash-product-emoji" style="background:rgba(16,124,16,0.15);">🎮</span>
+                      <span class="dash-product-name">Game Pass Ultimate</span>
+                    </div>
+                  </td>
+                  <td>Subscription</td>
+                  <td><span class="dash-amount">$14.99</span></td>
+                  <td>2,104</td>
+                  <td><span class="dash-amount">$31,539</span></td>
+                  <td><span class="dash-stock low">12</span></td>
+                  <td><span class="dash-status processing">Low Stock</span></td>
+                  <td>
+                    <div class="dash-table-actions">
+                      <button class="dash-action-btn" aria-label="Edit">✏️</button>
+                      <button class="dash-action-btn" aria-label="Delete">🗑</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="dash-table-footer">
+            <span class="dash-table-info">Showing 5 of 12 products</span>
+            <div class="dash-table-pages">
+              <button class="dash-page-btn">‹</button>
+              <button class="dash-page-btn active">1</button>
+              <button class="dash-page-btn">2</button>
+              <button class="dash-page-btn">3</button>
+              <button class="dash-page-btn">›</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION: ORDERS ====== -->
+      <section class="dash-section" id="section-orders">
+        <div class="dash-section-header">
+          <div>
+            <h1 class="dash-page-title">Orders</h1>
+            <p class="dash-page-subtitle">Track and manage all customer orders</p>
+          </div>
+          <div class="dash-header-actions">
+            <select class="dash-filter-select">
+              <option>All Statuses</option>
+              <option>Delivered</option>
+              <option>Processing</option>
+              <option>Pending</option>
+              <option>Cancelled</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="dash-table-card">
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th><label class="dash-checkbox"><input type="checkbox" /><span class="dash-checkbox-mark"></span></label></th>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Product</th>
+                  <th>Amount</th>
+                  <th>Payment</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><label class="dash-checkbox"><input type="checkbox" /><span class="dash-checkbox-mark"></span></label></td>
+                  <td><span class="dash-order-id">#NEX-28473</span></td>
+                  <td><span class="dash-customer-name">Zer0Craft</span></td>
+                  <td>Minecraft Premium</td>
+                  <td><span class="dash-amount">$29.99</span></td>
+                  <td><span class="dash-payment-card">💳 Visa</span></td>
+                  <td><span class="dash-status delivered">Delivered</span></td>
+                  <td>Jun 15, 2025</td>
+                  <td><button class="dash-action-btn" aria-label="View">👁</button></td>
+                </tr>
+                <tr>
+                  <td><label class="dash-checkbox"><input type="checkbox" /><span class="dash-checkbox-mark"></span></label></td>
+                  <td><span class="dash-order-id">#NEX-28472</span></td>
+                  <td><span class="dash-customer-name">Kyro_22</span></td>
+                  <td>Discord Nitro ×2</td>
+                  <td><span class="dash-amount">$19.98</span></td>
+                  <td><span class="dash-payment-card">💳 Mastercard</span></td>
+                  <td><span class="dash-status processing">Processing</span></td>
+                  <td>Jun 15, 2025</td>
+                  <td><button class="dash-action-btn" aria-label="View">👁</button></td>
+                </tr>
+                <tr>
+                  <td><label class="dash-checkbox"><input type="checkbox" /><span class="dash-checkbox-mark"></span></label></td>
+                  <td><span class="dash-order-id">#NEX-28471</span></td>
+                  <td><span class="dash-customer-name">NeonViper</span></td>
+                  <td>Game Pass Ultimate</td>
+                  <td><span class="dash-amount">$14.99</span></td>
+                  <td><span class="dash-payment-paypal">🅿 PayPal</span></td>
+                  <td><span class="dash-status delivered">Delivered</span></td>
+                  <td>Jun 14, 2025</td>
+                  <td><button class="dash-action-btn" aria-label="View">👁</button></td>
+                </tr>
+                <tr>
+                  <td><label class="dash-checkbox"><input type="checkbox" /><span class="dash-checkbox-mark"></span></label></td>
+                  <td><span class="dash-order-id">#NEX-28470</span></td>
+                  <td><span class="dash-customer-name">MysticPulse</span></td>
+                  <td>Netflix Premium</td>
+                  <td><span class="dash-amount">$11.99</span></td>
+                  <td><span class="dash-payment-crypto">₿ Crypto</span></td>
+                  <td><span class="dash-status pending">Pending</span></td>
+                  <td>Jun 14, 2025</td>
+                  <td><button class="dash-action-btn" aria-label="View">👁</button></td>
+                </tr>
+                <tr>
+                  <td><label class="dash-checkbox"><input type="checkbox" /><span class="dash-checkbox-mark"></span></label></td>
+                  <td><span class="dash-order-id">#NEX-28469</span></td>
+                  <td><span class="dash-customer-name">ShadowBlade</span></td>
+                  <td>Spotify Premium</td>
+                  <td><span class="dash-amount">$5.99</span></td>
+                  <td><span class="dash-payment-card">💳 Amex</span></td>
+                  <td><span class="dash-status cancelled">Cancelled</span></td>
+                  <td>Jun 13, 2025</td>
+                  <td><button class="dash-action-btn" aria-label="View">👁</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION: CUSTOMERS ====== -->
+      <section class="dash-section" id="section-customers">
+        <div class="dash-section-header">
+          <div>
+            <h1 class="dash-page-title">Customers</h1>
+            <p class="dash-page-subtitle">Your growing gaming community</p>
+          </div>
+        </div>
+
+        <div class="dash-cards">
+          <div class="dash-card" data-aos="fade-up">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-icon-box" style="--icon-bg: rgba(0,212,255,0.12);"><span>👥</span></div>
+            <div class="dash-card-info">
+              <span class="dash-card-label">Total Customers</span>
+              <span class="dash-card-value">50,284</span>
+              <span class="dash-card-change up">▲ +2,341 this month</span>
+            </div>
+          </div>
+          <div class="dash-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-icon-box" style="--icon-bg: rgba(139,92,246,0.12);"><span>🔄</span></div>
+            <div class="dash-card-info">
+              <span class="dash-card-label">Repeat Rate</span>
+              <span class="dash-card-value">68%</span>
+              <span class="dash-card-change up">▲ 4.2%</span>
+            </div>
+          </div>
+          <div class="dash-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-icon-box" style="--icon-bg: rgba(0,255,136,0.12);"><span>💎</span></div>
+            <div class="dash-card-info">
+              <span class="dash-card-label">VIP Customers</span>
+              <span class="dash-card-value">3,847</span>
+              <span class="dash-card-change up">▲ 284 new</span>
+            </div>
+          </div>
+          <div class="dash-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-icon-box" style="--icon-bg: rgba(255,60,172,0.12);"><span>🌍</span></div>
+            <div class="dash-card-info">
+              <span class="dash-card-label">Countries</span>
+              <span class="dash-card-value">42</span>
+              <span class="dash-card-change">Global reach</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION: REVIEWS ====== -->
+      <section class="dash-section" id="section-reviews">
+        <div class="dash-section-header">
+          <div>
+            <h1 class="dash-page-title">Reviews</h1>
+            <p class="dash-page-subtitle">Customer feedback and ratings</p>
+          </div>
+        </div>
+        <div class="dash-table-card">
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Product</th>
+                  <th>Rating</th>
+                  <th>Review</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="dash-customer-name">Zer0Craft</span></td>
+                  <td>Minecraft Premium</td>
+                  <td><span class="dash-stars">★★★★★</span></td>
+                  <td class="dash-review-text">\"Instant delivery, amazing cape!\"</td>
+                  <td>2 days ago</td>
+                  <td><span class="dash-status delivered">Approved</span></td>
+                  <td><button class="dash-action-btn">✏️</button></td>
+                </tr>
+                <tr>
+                  <td><span class="dash-customer-name">Kyro_22</span></td>
+                  <td>Discord Nitro</td>
+                  <td><span class="dash-stars">★★★★★</span></td>
+                  <td class="dash-review-text">\"Best price on the web!\"</td>
+                  <td>3 days ago</td>
+                  <td><span class="dash-status delivered">Approved</span></td>
+                  <td><button class="dash-action-btn">✏️</button></td>
+                </tr>
+                <tr>
+                  <td><span class="dash-customer-name">NeonViper</span></td>
+                  <td>Game Pass Ultimate</td>
+                  <td><span class="dash-stars">★★★★☆</span></td>
+                  <td class="dash-review-text">\"Great value, fast delivery\"</td>
+                  <td>5 days ago</td>
+                  <td><span class="dash-status pending">Pending</span></td>
+                  <td><button class="dash-action-btn">✏️</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SECTION: SETTINGS ====== -->
+      <section class="dash-section" id="section-settings">
+        <div class="dash-section-header">
+          <div>
+            <h1 class="dash-page-title">Settings</h1>
+            <p class="dash-page-subtitle">Configure your store preferences</p>
+          </div>
+        </div>
+
+        <div class="dash-settings-grid">
+          <div class="dash-card dash-settings-card">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-header">
+              <span class="dash-card-icon">🔔</span>
+              <h2>Notifications</h2>
+            </div>
+            <div class="dash-card-body">
+              <div class="dash-toggle-row">
+                <span>Email order confirmations</span>
+                <label class="dash-toggle"><input type="checkbox" checked /><span class="dash-toggle-slider"></span></label>
+              </div>
+              <div class="dash-toggle-row">
+                <span>Low stock alerts</span>
+                <label class="dash-toggle"><input type="checkbox" checked /><span class="dash-toggle-slider"></span></label>
+              </div>
+              <div class="dash-toggle-row">
+                <span>New review notifications</span>
+                <label class="dash-toggle"><input type="checkbox" /><span class="dash-toggle-slider"></span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-card dash-settings-card">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-header">
+              <span class="dash-card-icon">🔒</span>
+              <h2>Security</h2>
+            </div>
+            <div class="dash-card-body">
+              <div class="dash-toggle-row">
+                <span>Two-factor authentication</span>
+                <label class="dash-toggle"><input type="checkbox" /><span class="dash-toggle-slider"></span></label>
+              </div>
+              <div class="dash-toggle-row">
+                <span>Fraud detection</span>
+                <label class="dash-toggle"><input type="checkbox" checked /><span class="dash-toggle-slider"></span></label>
+              </div>
+              <div class="dash-toggle-row">
+                <span>Auto-block VPN</span>
+                <label class="dash-toggle"><input type="checkbox" checked /><span class="dash-toggle-slider"></span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-card dash-settings-card">
+            <div class="dash-card-glow"></div>
+            <div class="dash-card-header">
+              <span class="dash-card-icon">💳</span>
+              <h2>Payment</h2>
+            </div>
+            <div class="dash-card-body">
+              <div class="dash-toggle-row">
+                <span>Accept credit cards</span>
+                <label class="dash-toggle"><input type="checkbox" checked /><span class="dash-toggle-slider"></span></label>
+              </div>
+              <div class="dash-toggle-row">
+                <span>Accept PayPal</span>
+                <label class="dash-toggle"><input type="checkbox" checked /><span class="dash-toggle-slider"></span></label>
+              </div>
+              <div class="dash-toggle-row">
+                <span>Accept crypto (5% off)</span>
+                <label class="dash-toggle"><input type="checkbox" checked /><span class="dash-toggle-slider"></span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ====== TOAST NOTIFICATION ====== -->
+  <div class="dash-toast" id="dash-toast">
+    <div class="dash-toast-icon">✓</div>
+    <div class="dash-toast-content">
+      <span class="dash-toast-title">Welcome back!</span>
+      <span class="dash-toast-text">Dashboard loaded. 8 new orders since your last visit.</span>
+    </div>
+    <button class="dash-toast-close" aria-label="Dismiss">✕</button>
+  </div>
+
+  <div id="nx-notifications" aria-live="polite" aria-label="Live purchase notifications"></div>
+
+  <script src="dashboard.js"></script>
+  <script src="notifications.js"></script>
+</body>
+</html>

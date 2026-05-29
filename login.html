@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexusStore – Login & Register</title>
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="login.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="auth-page">
+
+  <!-- ====== FLOATING PARTICLES CANVAS ====== -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ====== MOUSE TRAIL ====== -->
+  <canvas id="mouse-trail-canvas"></canvas>
+
+  <!-- ====== SCROLL PROGRESS BAR ====== -->
+  <div id="scroll-progress"></div>
+
+  <!-- ====== BACKGROUND EFFECTS ====== -->
+  <div class="auth-bg-gradient"></div>
+  <div class="auth-bg-grid"></div>
+  <div class="auth-scanlines"></div>
+  <div class="auth-glow-orb aorb-1"></div>
+  <div class="auth-glow-orb aorb-2"></div>
+  <div class="auth-glow-orb aorb-3"></div>
+
+  <!-- ====== NAVBAR ====== -->
+  <nav id="navbar" class="scrolled">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">◆</span>
+        <span class="logo-text">NEXUS<span class="logo-accent">STORE</span></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#products">Products</a></li>
+        <li><a href="index.html#reviews">Reviews</a></li>
+        <li><a href="login.html" class="active">Login</a></li>
+        <li><a href="checkout.html">Checkout</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="index.html" class="btn-glow btn-sm btn-ripple">← Back</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ====== FLOATING CUBES ====== -->
+  <div class="auth-cube-container">
+    <div class="auth-cube acube-1">
+      <div class="auth-cube-inner">
+        <div class="auth-cube-face front"></div>
+        <div class="auth-cube-face back"></div>
+        <div class="auth-cube-face right"></div>
+        <div class="auth-cube-face left"></div>
+        <div class="auth-cube-face top"></div>
+        <div class="auth-cube-face bottom"></div>
+      </div>
+    </div>
+    <div class="auth-cube acube-2">
+      <div class="auth-cube-inner">
+        <div class="auth-cube-face front"></div>
+        <div class="auth-cube-face back"></div>
+        <div class="auth-cube-face right"></div>
+        <div class="auth-cube-face left"></div>
+        <div class="auth-cube-face top"></div>
+        <div class="auth-cube-face bottom"></div>
+      </div>
+    </div>
+    <div class="auth-cube acube-3">
+      <div class="auth-cube-inner">
+        <div class="auth-cube-face front"></div>
+        <div class="auth-cube-face back"></div>
+        <div class="auth-cube-face right"></div>
+        <div class="auth-cube-face left"></div>
+        <div class="auth-cube-face top"></div>
+        <div class="auth-cube-face bottom"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== FLOATING ICONS ====== -->
+  <div class="auth-float-icon aicon-1">🔐</div>
+  <div class="auth-float-icon aicon-2">🛡</div>
+  <div class="auth-float-icon aicon-3">⚡</div>
+  <div class="auth-float-icon aicon-4">💎</div>
+  <div class="auth-float-icon aicon-5">🎮</div>
+
+  <!-- ====== AUTH CARD ====== -->
+  <main class="auth-section">
+    <div class="auth-card" id="auth-card">
+
+      <!-- Glow border -->
+      <div class="auth-card-glow"></div>
+
+      <!-- Logo -->
+      <div class="auth-card-header">
+        <div class="auth-logo-icon">◆</div>
+        <h1 class="auth-title">Welcome Back</h1>
+        <p class="auth-subtitle">Sign in to your NexusStore account</p>
+      </div>
+
+      <!-- Tab Toggle -->
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" data-tab="login" role="tab" aria-selected="true" aria-controls="login-form">Sign In</button>
+        <button class="auth-tab" data-tab="register" role="tab" aria-selected="false" aria-controls="register-form">Create Account</button>
+        <div class="auth-tab-indicator"></div>
+      </div>
+
+      <!-- ====== LOGIN FORM ====== -->
+      <form class="auth-form active" id="login-form" novalidate autocomplete="off">
+        <div class="auth-field-group">
+          <div class="auth-field">
+            <label class="auth-label" for="login-email">Email Address</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">✉</span>
+              <input
+                type="email"
+                id="login-email"
+                class="auth-input"
+                placeholder="you@example.com"
+                required
+                autocomplete="email"
+              />
+              <span class="auth-input-border"></span>
+            </div>
+            <span class="auth-field-error" id="login-email-error"></span>
+          </div>
+
+          <div class="auth-field">
+            <label class="auth-label" for="login-password">Password</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">🔑</span>
+              <input
+                type="password"
+                id="login-password"
+                class="auth-input"
+                placeholder="••••••••"
+                required
+                autocomplete="current-password"
+                minlength="6"
+              />
+              <button type="button" class="auth-pw-toggle" aria-label="Toggle password visibility" data-toggle>
+                <span class="pw-eye">👁</span>
+                <span class="pw-eye-off" style="display:none;">👁‍🗨</span>
+              </button>
+              <span class="auth-input-border"></span>
+            </div>
+            <span class="auth-field-error" id="login-password-error"></span>
+          </div>
+
+          <div class="auth-row">
+            <label class="auth-checkbox">
+              <input type="checkbox" checked />
+              <span class="auth-checkbox-mark"></span>
+              <span class="auth-checkbox-label">Remember me</span>
+            </label>
+            <a href="#" class="auth-forgot">Forgot Password?</a>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-glow btn-lg auth-submit btn-ripple">
+          <span class="btn-label">Sign In</span>
+          <span class="btn-icon">→</span>
+        </button>
+
+        <div class="auth-divider">
+          <span class="auth-divider-line"></span>
+          <span class="auth-divider-text">Or continue with</span>
+          <span class="auth-divider-line"></span>
+        </div>
+
+        <div class="auth-social">
+          <button type="button" class="auth-social-btn" data-provider="discord" aria-label="Sign in with Discord">
+            <span class="social-provider-icon">D</span>
+            <span class="social-provider-name">Discord</span>
+          </button>
+          <button type="button" class="auth-social-btn" data-provider="google" aria-label="Sign in with Google">
+            <span class="social-provider-icon">G</span>
+            <span class="social-provider-name">Google</span>
+          </button>
+          <button type="button" class="auth-social-btn" data-provider="xbox" aria-label="Sign in with Xbox">
+            <span class="social-provider-icon">X</span>
+            <span class="social-provider-name">Xbox</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- ====== REGISTER FORM ====== -->
+      <form class="auth-form" id="register-form" novalidate autocomplete="off">
+        <div class="auth-field-group">
+          <div class="auth-field">
+            <label class="auth-label" for="reg-username">Username</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">👤</span>
+              <input
+                type="text"
+                id="reg-username"
+                class="auth-input"
+                placeholder="GamerTag"
+                required
+                autocomplete="username"
+                minlength="3"
+                pattern="[a-zA-Z0-9_]+"
+              />
+              <span class="auth-input-border"></span>
+            </div>
+            <span class="auth-field-error" id="reg-username-error"></span>
+          </div>
+
+          <div class="auth-field">
+            <label class="auth-label" for="reg-email">Email Address</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">✉</span>
+              <input
+                type="email"
+                id="reg-email"
+                class="auth-input"
+                placeholder="you@example.com"
+                required
+                autocomplete="email"
+              />
+              <span class="auth-input-border"></span>
+            </div>
+            <span class="auth-field-error" id="reg-email-error"></span>
+          </div>
+
+          <div class="auth-field">
+            <label class="auth-label" for="reg-password">Password</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">🔑</span>
+              <input
+                type="password"
+                id="reg-password"
+                class="auth-input"
+                placeholder="Create a strong password"
+                required
+                autocomplete="new-password"
+                minlength="8"
+              />
+              <button type="button" class="auth-pw-toggle" aria-label="Toggle password visibility" data-toggle>
+                <span class="pw-eye">👁</span>
+                <span class="pw-eye-off" style="display:none;">👁‍🗨</span>
+              </button>
+              <span class="auth-input-border"></span>
+            </div>
+            <span class="auth-field-error" id="reg-password-error"></span>
+          </div>
+
+          <!-- Password Strength Meter -->
+          <div class="auth-pw-strength" id="pw-strength">
+            <div class="pw-strength-bar">
+              <div class="pw-strength-fill" id="pw-strength-fill"></div>
+            </div>
+            <div class="pw-strength-labels">
+              <span>Weak</span>
+              <span>Fair</span>
+              <span>Good</span>
+              <span>Strong</span>
+              <span>Unbreakable</span>
+            </div>
+          </div>
+
+          <div class="auth-field">
+            <label class="auth-label" for="reg-confirm">Confirm Password</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-input-icon">✓</span>
+              <input
+                type="password"
+                id="reg-confirm"
+                class="auth-input"
+                placeholder="Repeat your password"
+                required
+                autocomplete="new-password"
+              />
+              <button type="button" class="auth-pw-toggle" aria-label="Toggle password visibility" data-toggle>
+                <span class="pw-eye">👁</span>
+                <span class="pw-eye-off" style="display:none;">👁‍🗨</span>
+              </button>
+              <span class="auth-input-border"></span>
+            </div>
+            <span class="auth-field-error" id="reg-confirm-error"></span>
+          </div>
+
+          <div class="auth-terms">
+            <label class="auth-checkbox">
+              <input type="checkbox" id="reg-terms" required />
+              <span class="auth-checkbox-mark"></span>
+              <span class="auth-checkbox-label">I agree to the <a href="#">Terms of Service</a> &amp; <a href="#">Privacy Policy</a></span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-glow btn-lg auth-submit btn-ripple">
+          <span class="btn-label">Create Account</span>
+          <span class="btn-icon">→</span>
+        </button>
+
+        <div class="auth-divider">
+          <span class="auth-divider-line"></span>
+          <span class="auth-divider-text">Or sign up with</span>
+          <span class="auth-divider-line"></span>
+        </div>
+
+        <div class="auth-social">
+          <button type="button" class="auth-social-btn" data-provider="discord" aria-label="Sign up with Discord">
+            <span class="social-provider-icon">D</span>
+            <span class="social-provider-name">Discord</span>
+          </button>
+          <button type="button" class="auth-social-btn" data-provider="google" aria-label="Sign up with Google">
+            <span class="social-provider-icon">G</span>
+            <span class="social-provider-name">Google</span>
+          </button>
+          <button type="button" class="auth-social-btn" data-provider="xbox" aria-label="Sign up with Xbox">
+            <span class="social-provider-icon">X</span>
+            <span class="social-provider-name">Xbox</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Success overlay -->
+      <div class="auth-success" id="auth-success">
+        <div class="auth-success-icon">✓</div>
+        <h2 class="auth-success-title">Welcome to NexusStore!</h2>
+        <p class="auth-success-text">Redirecting you to your dashboard...</p>
+        <div class="auth-success-loader">
+          <div class="auth-success-ring"></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ====== FOOTER (MINIMAL) ====== -->
+  <footer class="auth-footer">
+    <div class="auth-footer-inner">
+      <div class="auth-footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#products">Products</a>
+        <a href="#">FAQ</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+      </div>
+      <p class="auth-footer-copy">&copy; 2025 NexusStore. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div id="nx-notifications" aria-live="polite" aria-label="Live purchase notifications"></div>
+
+  <script src="login.js"></script>
+  <script src="notifications.js"></script>
+</body>
+</html>

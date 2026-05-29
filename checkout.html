@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexusStore – Secure Checkout</title>
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="checkout.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="checkout-page">
+
+  <!-- ====== FLOATING PARTICLES CANVAS ====== -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ====== MOUSE TRAIL ====== -->
+  <canvas id="mouse-trail-canvas"></canvas>
+
+  <!-- ====== SCROLL PROGRESS BAR ====== -->
+  <div id="scroll-progress"></div>
+
+  <!-- ====== BACKGROUND EFFECTS ====== -->
+  <div class="co-bg-gradient"></div>
+  <div class="co-bg-grid"></div>
+  <div class="co-scanlines"></div>
+  <div class="co-glow-orb orb-1"></div>
+  <div class="co-glow-orb orb-2"></div>
+  <div class="co-glow-orb orb-3"></div>
+
+  <!-- ====== NAVBAR ====== -->
+  <nav id="navbar" class="scrolled">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">◆</span>
+        <span class="logo-text">NEXUS<span class="logo-accent">STORE</span></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#products">Products</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="checkout.html" class="active">Checkout</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="index.html" class="btn-glow btn-sm btn-ripple">← Back</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ====== FLOATING CUBES ====== -->
+  <div class="co-cube-container">
+    <div class="co-cube cube-1">
+      <div class="co-cube-inner">
+        <div class="co-cube-face front"></div>
+        <div class="co-cube-face back"></div>
+        <div class="co-cube-face right"></div>
+        <div class="co-cube-face left"></div>
+        <div class="co-cube-face top"></div>
+        <div class="co-cube-face bottom"></div>
+      </div>
+    </div>
+    <div class="co-cube cube-2">
+      <div class="co-cube-inner">
+        <div class="co-cube-face front"></div>
+        <div class="co-cube-face back"></div>
+        <div class="co-cube-face right"></div>
+        <div class="co-cube-face left"></div>
+        <div class="co-cube-face top"></div>
+        <div class="co-cube-face bottom"></div>
+      </div>
+    </div>
+    <div class="co-cube cube-3">
+      <div class="co-cube-inner">
+        <div class="co-cube-face front"></div>
+        <div class="co-cube-face back"></div>
+        <div class="co-cube-face right"></div>
+        <div class="co-cube-face left"></div>
+        <div class="co-cube-face top"></div>
+        <div class="co-cube-face bottom"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== FLOATING ICONS ====== -->
+  <div class="co-float-icon icon-1">🛒</div>
+  <div class="co-float-icon icon-2">💳</div>
+  <div class="co-float-icon icon-3">🔒</div>
+  <div class="co-float-icon icon-4">⚡</div>
+  <div class="co-float-icon icon-5">💎</div>
+
+  <!-- ====== SECURE BADGE STRIP ====== -->
+  <div class="co-secure-strip">
+    <div class="co-secure-inner">
+      <span class="co-secure-item">🔒 <strong>SSL Secured</strong> — 256-bit encryption</span>
+      <span class="co-secure-divider">|</span>
+      <span class="co-secure-item">⚡ <strong>Instant Delivery</strong> — after payment</span>
+      <span class="co-secure-divider">|</span>
+      <span class="co-secure-item">🛡 <strong>Buyer Protection</strong> — 14-day guarantee</span>
+    </div>
+  </div>
+
+  <!-- ====== CHECKOUT SECTION ====== -->
+  <main class="co-section">
+    <div class="co-header">
+      <span class="co-section-tag">🔒 Secure Checkout</span>
+      <h1 class="co-title">Complete Your Order</h1>
+      <p class="co-subtitle">You're seconds away from unlocking premium gaming experiences</p>
+    </div>
+
+    <div class="co-layout">
+
+      <!-- ====== LEFT COLUMN – Billing & Payment ====== -->
+      <div class="co-left">
+
+        <!-- --- Contact Info --- -->
+        <div class="co-card" data-aos="fade-up" data-aos-duration="700">
+          <div class="co-card-glow"></div>
+          <div class="co-card-header">
+            <span class="co-card-icon">✉</span>
+            <h2>Contact Information</h2>
+          </div>
+          <div class="co-card-body">
+            <div class="co-field">
+              <label class="co-label" for="co-email">Email Address</label>
+              <div class="co-input-wrap">
+                <span class="co-input-icon">✉</span>
+                <input type="email" id="co-email" class="co-input" placeholder="you@example.com" required autocomplete="email" value="gamer@nexusstore.com" />
+                <span class="co-input-border"></span>
+              </div>
+              <span class="co-field-hint">We'll send your order confirmation &amp; license keys here</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- --- Payment Method --- -->
+        <div class="co-card" data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
+          <div class="co-card-glow"></div>
+          <div class="co-card-header">
+            <span class="co-card-icon">💳</span>
+            <h2>Payment Method</h2>
+          </div>
+          <div class="co-card-body">
+            <div class="co-payment-options" id="co-payment-options" role="radiogroup" aria-label="Payment methods">
+              <button class="co-pay-option active" data-method="card" role="radio" aria-checked="true" tabindex="0">
+                <span class="co-pay-icon">💳</span>
+                <span class="co-pay-info">
+                  <span class="co-pay-name">Credit Card</span>
+                  <span class="co-pay-desc">Visa, Mastercard, Amex</span>
+                </span>
+                <span class="co-pay-check">✓</span>
+              </button>
+              <button class="co-pay-option" data-method="paypal" role="radio" aria-checked="false" tabindex="-1">
+                <span class="co-pay-icon co-pay-paypal">P</span>
+                <span class="co-pay-info">
+                  <span class="co-pay-name">PayPal</span>
+                  <span class="co-pay-desc">Fast &amp; secure online payments</span>
+                </span>
+                <span class="co-pay-check">✓</span>
+              </button>
+              <button class="co-pay-option" data-method="crypto" role="radio" aria-checked="false" tabindex="-1">
+                <span class="co-pay-icon">₿</span>
+                <span class="co-pay-info">
+                  <span class="co-pay-name">Cryptocurrency</span>
+                  <span class="co-pay-desc">BTC, ETH, USDT, SOL</span>
+                </span>
+                <span class="co-pay-check">✓</span>
+              </button>
+            </div>
+
+            <!-- Credit Card Form (shown when card is selected) -->
+            <div class="co-card-form" id="co-card-form">
+              <div class="co-card-row">
+                <div class="co-field co-field-full">
+                  <label class="co-label" for="co-card-number">Card Number</label>
+                  <div class="co-input-wrap">
+                    <span class="co-input-icon">💳</span>
+                    <input type="text" id="co-card-number" class="co-input co-card-input" placeholder="•••• •••• •••• ••••" maxlength="19" inputmode="numeric" />
+                    <span class="co-input-border"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="co-card-row co-card-row-half">
+                <div class="co-field">
+                  <label class="co-label" for="co-card-expiry">Expiry Date</label>
+                  <div class="co-input-wrap">
+                    <span class="co-input-icon">📅</span>
+                    <input type="text" id="co-card-expiry" class="co-input co-card-input" placeholder="MM / YY" maxlength="7" />
+                    <span class="co-input-border"></span>
+                  </div>
+                </div>
+                <div class="co-field">
+                  <label class="co-label" for="co-card-cvv">CVV</label>
+                  <div class="co-input-wrap">
+                    <span class="co-input-icon">🔐</span>
+                    <input type="text" id="co-card-cvv" class="co-input co-card-input" placeholder="•••" maxlength="4" inputmode="numeric" />
+                    <span class="co-input-border"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card type indicators -->
+              <div class="co-card-types">
+                <span class="co-card-type">VISA</span>
+                <span class="co-card-type">MC</span>
+                <span class="co-card-type">AMEX</span>
+                <span class="co-card-type">DISCOVER</span>
+              </div>
+            </div>
+
+            <!-- PayPal info (shown when PayPal selected) -->
+            <div class="co-pay-info-box" id="co-paypal-info" style="display:none;">
+              <div class="co-pay-info-icon">🅿</div>
+              <p>You'll be redirected to PayPal to complete your purchase securely. Your payment info stays private.</p>
+            </div>
+
+            <!-- Crypto info (shown when crypto selected) -->
+            <div class="co-pay-info-box" id="co-crypto-info" style="display:none;">
+              <div class="co-pay-info-icon">₿</div>
+              <p>Pay with Bitcoin, Ethereum, USDT, or Solana. 5% crypto discount automatically applied at checkout.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- --- Billing Address (simplified) --- -->
+        <div class="co-card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="700">
+          <div class="co-card-glow"></div>
+          <div class="co-card-header">
+            <span class="co-card-icon">📍</span>
+            <h2>Billing Details</h2>
+          </div>
+          <div class="co-card-body">
+            <div class="co-field">
+              <label class="co-label" for="co-name">Full Name</label>
+              <div class="co-input-wrap">
+                <span class="co-input-icon">👤</span>
+                <input type="text" id="co-name" class="co-input" placeholder="John Gamer" required />
+                <span class="co-input-border"></span>
+              </div>
+            </div>
+            <div class="co-card-row">
+              <div class="co-field">
+                <label class="co-label" for="co-country">Country</label>
+                <div class="co-input-wrap">
+                  <span class="co-input-icon">🌍</span>
+                  <select id="co-country" class="co-input co-select">
+                    <option value="">Select country</option>
+                    <option value="US">United States</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="CA">Canada</option>
+                    <option value="AU">Australia</option>
+                    <option value="DE">Germany</option>
+                    <option value="FR">France</option>
+                    <option value="JP">Japan</option>
+                    <option value="BR">Brazil</option>
+                    <option value="IN">India</option>
+                    <option value="SG">Singapore</option>
+                    <option value="AE">UAE</option>
+                    <option value="OTHER">Other</option>
+                  </select>
+                  <span class="co-input-border"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- --- Promo Code --- -->
+        <div class="co-card" data-aos="fade-up" data-aos-delay="300" data-aos-duration="700">
+          <div class="co-card-glow"></div>
+          <div class="co-card-header">
+            <span class="co-card-icon">🏷</span>
+            <h2>Promo Code</h2>
+          </div>
+          <div class="co-card-body">
+            <div class="co-promo-row">
+              <div class="co-field co-field-full">
+                <div class="co-input-wrap co-input-promo">
+                  <span class="co-input-icon">🎮</span>
+                  <input type="text" id="co-promo" class="co-input" placeholder="Enter promo code (e.g. NEXUS10)" />
+                  <span class="co-input-border"></span>
+                  <button type="button" class="co-promo-btn" id="co-promo-btn">Apply</button>
+                </div>
+                <span class="co-field-hint co-promo-msg" id="co-promo-msg"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ====== RIGHT COLUMN – Order Summary ====== -->
+      <div class="co-right">
+
+        <div class="co-summary-card" data-aos="fade-left" data-aos-delay="50" data-aos-duration="700">
+          <div class="co-summary-glow"></div>
+
+          <div class="co-summary-header">
+            <span class="co-summary-icon">🛒</span>
+            <h2>Order Summary</h2>
+            <span class="co-summary-count" id="co-item-count">3 items</span>
+          </div>
+
+          <div class="co-summary-items" id="co-summary-items">
+
+            <!-- Item 1 – Minecraft Premium -->
+            <div class="co-summary-item" data-id="minecraft" data-price="29.99">
+              <div class="co-item-left">
+                <div class="co-item-icon minecraft">⛏</div>
+                <div class="co-item-info">
+                  <span class="co-item-name">Minecraft Premium</span>
+                  <span class="co-item-type">Java &amp; Bedrock Edition</span>
+                </div>
+              </div>
+              <div class="co-item-right">
+                <div class="co-item-qty">
+                  <button class="co-qty-btn co-qty-minus" aria-label="Decrease quantity">−</button>
+                  <span class="co-qty-value" data-qty="1">1</span>
+                  <button class="co-qty-btn co-qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <span class="co-item-price" data-base="29.99">$29.99</span>
+              </div>
+            </div>
+
+            <!-- Item 2 – Discord Nitro -->
+            <div class="co-summary-item" data-id="discord" data-price="9.99">
+              <div class="co-item-left">
+                <div class="co-item-icon discord">💬</div>
+                <div class="co-item-info">
+                  <span class="co-item-name">Discord Nitro</span>
+                  <span class="co-item-type">Monthly subscription</span>
+                </div>
+              </div>
+              <div class="co-item-right">
+                <div class="co-item-qty">
+                  <button class="co-qty-btn co-qty-minus" aria-label="Decrease quantity">−</button>
+                  <span class="co-qty-value" data-qty="2">2</span>
+                  <button class="co-qty-btn co-qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <span class="co-item-price" data-base="9.99">$19.98</span>
+              </div>
+            </div>
+
+            <!-- Item 3 – Spotify Premium -->
+            <div class="co-summary-item" data-id="spotify" data-price="5.99">
+              <div class="co-item-left">
+                <div class="co-item-icon spotify">🎵</div>
+                <div class="co-item-info">
+                  <span class="co-item-name">Spotify Premium</span>
+                  <span class="co-item-type">Monthly subscription</span>
+                </div>
+              </div>
+              <div class="co-item-right">
+                <div class="co-item-qty">
+                  <button class="co-qty-btn co-qty-minus" aria-label="Decrease quantity">−</button>
+                  <span class="co-qty-value" data-qty="1">1</span>
+                  <button class="co-qty-btn co-qty-plus" aria-label="Increase quantity">+</button>
+                </div>
+                <span class="co-item-price" data-base="5.99">$5.99</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Totals -->
+          <div class="co-summary-totals">
+            <div class="co-total-row">
+              <span class="co-total-label">Subtotal</span>
+              <span class="co-total-value" id="co-subtotal">$55.96</span>
+            </div>
+            <div class="co-total-row co-total-discount" id="co-discount-row" style="display:none;">
+              <span class="co-total-label">Discount <span id="co-discount-name">(Promo)</span></span>
+              <span class="co-total-value co-total-discount-value" id="co-discount-amount">−$0.00</span>
+            </div>
+            <div class="co-total-row">
+              <span class="co-total-label">Tax (8%)</span>
+              <span class="co-total-value" id="co-tax">$4.48</span>
+            </div>
+            <div class="co-total-row">
+              <span class="co-total-label">Delivery</span>
+              <span class="co-total-value co-total-free">Free</span>
+            </div>
+            <div class="co-total-row co-total-grand">
+              <span class="co-total-label">Total</span>
+              <span class="co-total-value co-total-amount" id="co-total">$60.44</span>
+            </div>
+          </div>
+
+          <!-- Place Order Button -->
+          <button type="button" class="btn-glow btn-lg co-place-order btn-ripple" id="co-place-order">
+            <span class="co-btn-lock">🔒</span>
+            <span class="btn-label">Place Order – $60.44</span>
+            <span class="btn-arrow">→</span>
+          </button>
+
+          <div class="co-secure-badges">
+            <span>🔒 SSL Encrypted</span>
+            <span>⚡ Instant Delivery</span>
+            <span>🛡 14-Day Guarantee</span>
+          </div>
+        </div>
+
+        <!-- Trusted by -->
+        <div class="co-trusted" data-aos="fade-up" data-aos-delay="200">
+          <span class="co-trusted-label">Trusted by 50,000+ gamers</span>
+          <div class="co-trusted-logos">
+            <span class="co-trusted-logo">◆ NEXUS</span>
+            <span class="co-trusted-logo">⚡ GAMER</span>
+            <span class="co-trusted-logo">🛡 PRO</span>
+            <span class="co-trusted-logo">★ ELITE</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ====== SUCCESS OVERLAY ====== -->
+  <div class="co-success" id="co-success">
+    <div class="co-success-card">
+      <div class="co-success-glow"></div>
+      <div class="co-success-check">
+        <div class="co-success-check-inner">✓</div>
+      </div>
+      <div class="co-success-ring"></div>
+      <h2 class="co-success-title">Purchase Complete!</h2>
+      <p class="co-success-text">Your order has been confirmed. License keys and download links have been sent to your email.</p>
+
+      <div class="co-success-details">
+        <div class="co-success-detail">
+          <span class="co-success-detail-label">Order ID</span>
+          <span class="co-success-detail-value" id="co-order-id">NEX-2025-XXXXX</span>
+        </div>
+        <div class="co-success-detail">
+          <span class="co-success-detail-label">Total Charged</span>
+          <span class="co-success-detail-value co-success-amount" id="co-order-total">$60.44</span>
+        </div>
+        <div class="co-success-detail">
+          <span class="co-success-detail-label">Delivery</span>
+          <span class="co-success-detail-value co-success-email-icon">✉ Instant Email</span>
+        </div>
+      </div>
+
+      <div class="co-success-actions">
+        <a href="index.html" class="btn-glow btn-lg btn-ripple">← Back to Store</a>
+        <button type="button" class="btn-outline btn-lg btn-ripple" id="co-view-order">📋 View Order</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="co-footer">
+    <div class="co-footer-inner">
+      <div class="co-footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#products">Products</a>
+        <a href="#">FAQ</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+      <p class="co-footer-copy">&copy; 2025 NexusStore. All rights reserved. | 🔒 Secure checkout powered by NexusPay</p>
+    </div>
+  </footer>
+
+  <div id="nx-notifications" aria-live="polite" aria-label="Live purchase notifications"></div>
+
+  <script src="checkout.js"></script>
+  <script src="notifications.js"></script>
+</body>
+</html>
